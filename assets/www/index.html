@@ -1,23 +1,112 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
   <head>
-    <title>MunchyBot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MunchyBot!</title>
   <link rel="stylesheet" href="styles/jquery.mobile-1.0.min.css" />
   <script type="text/javascript" charset="utf-8" src="js/phonegap-1.2.0.js"></script>  
   <script type="text/javascript" charset="utf-8" src="js/jquery-1.7.1.min.js"></script> 
   <script type="text/javascript" charset="utf-8" src="js/jquery.mobile-1.0.min.js"></script>     
+  <script>
+  
+  var food = [
+    "Get some garlic sweet potato fries right now!",
+    "Just eat some Honey Bunches of Oats man!",
+    "Popcorn is Love and Love is Popcorn",
+    "You want a Panda Party Platter",
+    "You want some PB & jelly in your belly.",
+    "Goto The Spot!",
+    "Chili Dog Time!",
+    "Korean Tofu Soup!",
+    "Mogo! Mogo! Mogo!",
+    "Never had it but it sounds amazing.... Chi'Lantro, Korean Mexican fusion? http://www.chilantrobbq.com/",
+    "A spatchcock would really hit the spot!",
+    "Eating at krung thai would be perfect, go now!",
+    "Ramen and gyoza would hit the spot!",
+    "Drink a Red Bull!!!",
+    "Grab some frozen yogurt",
+    "Some Hooters hot wings sound delicious!",
+    "Get some bomskie sushi!",
+    "Some food like Pizza sounds good!",
+    "You think about simpler times in school and decide on a peanut butter and jelly sandwitch. -Geek",
+    "You're really craving a hot dog!",
+    "I bet some chicken biryani would taste amazing with a bottle of Thums Up!",
+    "Sweet Tomatoes!",
+    "Pasta, specifically carbonara... ...with peas!",
+    "Ahi Tuna Tartare because raw food is more exciting!",
+    "Bagel",
+    "Egg rolls would be a good start.",
+    "Never underestimate the smoothie",
+    "Tortellini sounds like heaven",
+    "You want some chicken wings!",
+    "Some Mexican food would be good about now",
+    "You could go for some Korean barbeque",
+    "Right now you want some chicken strips",
+    "You want some cajun food",
+    "You feel like some sushi",
+    "You feel like some sashimi",
+    "French food sounds good",
+    "You could go for some Thai food",
+    "You want to eat Italian",
+    "You want to bite in to a juicy hamburger",
+    "You feel like Chinese cuisine",
+    "Pizza slice would be nice",
+    "How about a nice hot bowl of Pho!",
+    "Just drink some green tea!",
+    "Some Mexican food would be good about now",
+    "You feel like eating a salad",
+    "Two words: baked potato!",
+    ];
+  
+  function onLoad() {
+    document.addEventListener("deviceready", onDeviceReady, false);
+  }
+  
+  function onDeviceReady() {
+    document.addEventListener("menubutton", onMenuKeyDown, false);
+    document.addEventListener("searchbutton", onSearchKeyDown, false);
+    document.addEventListener("backbutton", onBackKeyDown, false);
+    
+    randomizeFood();
+  }
+  
+  function randomizeFood() {
+    jQuery("#placetowrite").html(food[Math.floor(Math.random() * food.length)]);
+  }
+  
+  function onBackKeyDown() {
+    console.log("back");
+    randomizeFood();
+  }
+  
+  function onSearchKeyDown() {
+    console.log("search");
+  }
+  
+  function onMenuKeyDown() {
+    $.mobile.changePage("#settings", { transition: "pop"});
+  }
+  
+  </script>
   </head>
-  <body>
-    <div data-role="page">
+  <body onload="onLoad()">
+    <div data-role="page" id="main">
     
-    	<div data-role="header">
-    		<h1>My Title</h1>
+    	<div data-role="header" style="text-align: center">
+    		<h1>Munchybot!</h1>
     	</div>
     
-    	<div data-role="content">	
-    		<p>You feel like eating tacos.</p>		
+    	<div data-role="content" style="text-align: center">	
+    		<p id="placetowrite">Loading...</p>		
     	</div>
     
+    </div>
+    <div data-role="page" id="settings">
+      <div data-role="header">Settings</div>
+      
+      <div data-role="content" style="text-align: center">
+        <div>Nothing to see.</div>
+      </div>
     </div>
   </body>
 </html>
